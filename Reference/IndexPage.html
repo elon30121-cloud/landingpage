@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="" id="htmlPage">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tadoom | Bill Summary</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+        <link rel="stylesheet" href="CSS/indexPage.css"/>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body>
+        <!-- Main Headers -->
+        <header>
+            <div class="p-3 text-white text-center container-fluid" style="background-color: #463164;">
+                <div class="row">
+                    <!-- Dark and Light Mode -->
+                    <!--<div class="col-sm-1">
+                         <input type="checkbox" class="checkbox" id="checkbox">
+                        <label for="checkbox" class="checkbox-label">
+                            <i class="fas fa-moon"></i>
+                            <i class="fas fa-sun"></i>
+                            <span class="ball"></span>
+                        </label> 
+                    </div>-->
+                    <!-- Image Logo -->
+                    <div class="col-sm-2">
+                        <img src="Images/LoginPage/tadoom__1_-removebg-preview.png" alt="Logo" style="cursor: pointer;" width="65%" height="75%" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">
+                    </div>
+                    <!-- Offcanvas Section -->
+                    <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+                        <div id="abouthead" class="offcanvas-header">
+                            <h5 id="offcanvasTopLabel" data-translate-key="About Tadoom" style="color: #00a29b;">About Tadoom</h5>
+                        </div>
+                        <div id="about" data-translate-key="Tadoom is Oman's premier IoT and Smart City transformation company, delivering state-of-the-art smart technology, automation, and innovative IoT solutions. Empower your business with Tadoom's cutting-edge services designed for optimal efficiency and growth. Our company is a pioneer in IoT integration, leveraging a service-oriented operational framework. At the core of our approach is value generation, ensuring that new technologies are supporting our clients’ growth and citizen experience. Additionally, we are an IOT licensed service provider and contribute to align Oman to international sustainability standards in the field of smart buildings." class="offcanvas-body">
+                            Tadoom is Oman's premier IoT and Smart City transformation company, delivering state-of-the-art smart technology, automation, and innovative IoT solutions. Empower your business with Tadoom's cutting-edge services designed for optimal efficiency and growth. Our company is a pioneer in IoT integration, leveraging a service-oriented operational framework. At the core of our approach is value generation, ensuring that new technologies are supporting our clients’ growth and citizen experience. Additionally, we are an IOT licensed service provider and contribute to align Oman to international sustainability standards in the field of smart buildings.
+                        </div>
+                    </div>
+                    <!-- Application Headings -->
+                    <div class="col-sm-4">
+                        <h1 class="text-white display-5" data-translate-key="Bill Summary" style="font-weight: 480;">Bill Summary</h1>
+                    </div>
+
+                    <!-- Login/Register button -->
+                    <div class="col-sm-2 text-center">
+                        <button class="btn mt-3 btn-md" data-translate-key="Signup / Login" data-bs-toggle="modal" data-bs-target="#authModal" style="background-color: #00a29b;">Signup / Login</button>
+                    </div>
+
+                    <div class="col-sm-2 mt-3">
+                        <!-- <button class="btn btn-info mt-3 btn-lg" data-bs-toggle="modal" data-bs-target="#authModal">Signup / Login</button> -->
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="accountNumber" data-translate-key="Account Number" placeholder="Account Number" aria-label="Search" aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                                <button id="searchButton" class="btn btn-outline-secondary text-white" data-translate-key="Search" type="button" id="button-addon2">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1 mt-4">
+                        <input type="checkbox" class="checkbox" id="checkbox">
+                        <label for="checkbox" class="checkbox-label">
+                            <i class="fas fa-moon"></i>
+                            <i class="fas fa-sun"></i>
+                            <span class="ball"></span>
+                        </label>
+                    </div>
+                    <div class="col-sm-1 mt-3 text-center">
+                        <button id="languageToggle" class="btn btn-outline-light">
+                            <span id="languageText">AR</span>
+                        </button>
+                    </div>                                       
+                </div>
+            </div>  
+            <!-- Authentication Modal -->
+            <div class="modal" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content wrapper">
+                        <!-- <div class="modal-header">
+                            <h5 data-translate-key="Signup Now" class="modal-title" id="authModalLabel">Signup Now</h5>
+                            <button type="button" id="closeSignup" class="btn btn-close btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        
+                        <div class="modal-header" hidden>
+                            <h5 data-translate-key="Login Now" class="modal-title" id="authModalLabelLogin">Login Now</h5>
+                            <button type="button" id="closeLogin" class="btn btn-close btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> -->
+                        <div class="modal-header">
+                            <button type="button" id="closeSignup" class="btn btn-close btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Signup Form -->
+                            <div id="signupForm">
+                                <form class="needs-validation" novalidate>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                        <input type="text" class="form-control" id="userNameField" data-translate-key="Username" placeholder="Username" pattern="[A-Za-z]+" required>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div data-translate-key="Please enter a valid first name (letters only)." class="invalid-feedback">Please enter a valid first name (letters only).</div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                        <input type="email" class="form-control" id="emailField" data-translate-key="Email" placeholder="Email" required>
+                                        <span class="input-group-text">@gmail.com</span>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div data-translate-key="Please enter a valid email address." class="invalid-feedback">Please enter a valid email address.</div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                        <input type="password" class="form-control" data-translate-key="Password" placeholder="Password" id="passwordField" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{6,10}" required>
+                                        <span class="input-group-text">
+                                            <i class="fa fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+                                        </span>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div data-translate-key="Password must be 6-10 characters, with at least one uppercase, one lowercase, one number, and one special character." class="invalid-feedback">
+                                            Password must be 6-10 characters, with at least one uppercase, one lowercase, one number, and one special character.
+                                        </div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                        <input type="password" class="form-control" data-translate-key="Confirm Password" placeholder="Confirm Password" id="confirmPasswordField" name="confirmPassword" required>
+                                        <span class="input-group-text">
+                                            <i class="fa fa-eye" id="toggleConfirmPassword" style="cursor: pointer;"></i>
+                                        </span>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div data-translate-key="Please confirm your password." class="invalid-feedback">Please confirm your password.</div>
+                                        <span id="confirmPasswordError" class="text-danger" style="display:none;"></span>
+                                    </div>
+                                    <div class="d-grid">
+                                        <button data-translate-key="Signup Now" type="submit" id="signupButton" class="btn btn-info">Signup Now</button>
+                                    </div>
+                                    <!-- Pending for Signup agreements 15-01-2025 -->
+                                    <p class="text-center mt-2">
+                                       <span data-translate-key="By signing up, you agree to our"> By signing up, you agree to our </span><a href="#" data-translate-key="Terms and Conditions" class="text-warning">Terms and Conditions</a> <span data-translate-key="and"> and </span><a href="#" data-translate-key="Privacy Policy" class="text-warning">Privacy Policy</a>.
+                                    </p>
+                                    <p class="text-center mt-2">
+                                        <span data-translate-key="Already have an account?">Already have an account?</span> <a href="#" id="showLoginForm" class="text-warning" data-translate-key="Login Here">Login Here</a>
+                                    </p>
+                                </form>
+                            </div>
+                            <!-- Response Modal -->
+                            <div class="modal" id="responseModal" tabindex="-1" aria-labelledby="responseModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="responseModalLabel">Response</h5>
+                                            <button type="button"  class="btn-close" data-bs-dismiss="modal" aria-label="Closed"></button>
+                                        </div>
+                                        <div class="modal-body text-warning">
+                                            <!-- Message will be inserted here -->
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" data-translate-key="Close" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Login Form -->
+                            <div id="loginForm" style="display:none;">
+                                <form class="needs-validation" novalidate>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                        <input type="text" class="form-control" data-translate-key="Username" id="userNameField" placeholder="Username" pattern="[A-Za-z]+" required>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div data-translate-key="Please enter a valid first name (letters only)." class="invalid-feedback">Please enter a valid first name (letters only).</div>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                        <input data-translate-key="Password" type="password" class="form-control" placeholder="Password" id="loginPasswordField" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{6,10}" required>
+                                        <span class="input-group-text">
+                                            <i class="fa fa-eye" id="toggleLoginPassword" style="cursor: pointer;"></i>
+                                        </span>
+                                        <div class="valid-feedback">Valid.</div>
+                                        <div data-translate-key="Password must be 6-10 characters, with at least one uppercase, one lowercase, one number, and one special character." class="invalid-feedback">
+                                            Password must be 6-10 characters, with at least one uppercase, one lowercase, one number, and one special character.
+                                        </div>
+                                    </div>
+                                    <div class="d-grid">
+                                        <button data-translate-key="Login Now" type="button" id="loginButton" class="btn btn-info">Login Now</button>
+                                    </div>
+                                    <p class="text-center mt-2">
+                                        <span data-translate-key="Don't have an account?">Don't have an account?</span> <a href="#" data-translate-key="Signup Here" id="showSignupForm" class="text-warning">Signup Here</a>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-translate-key="Close" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>          
+        </header>
+        <!-- Main Content -->
+        <section class="bg-fade">
+            <div class="container-fluid p-4 m-1">
+                <div class="row">
+                    <!-- About the Platform -->
+                    <div class="col-sm-12">
+                       <!-- Carousel -->
+                        <div id="demo" class="carousel slide" data-bs-ride="carousel">
+                            <!-- Indicators/dots -->
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active bg-primary"></button>
+                                <button type="button" data-bs-target="#demo" data-bs-slide-to="1" class="bg-primary"></button>
+                                <button type="button" data-bs-target="#demo" data-bs-slide-to="2" class="bg-primary"></button>
+                            </div>
+                            
+                            <!-- The slideshow/carousel -->
+                            <div class="carousel-inner" style="border-radius: 7px; border: 2px solid #00a29b;">
+                                <div class="carousel-item active">
+                                    <img src="Images/LoginPage/Play With OG.png" alt="Landing" class="d-block" style="width:100%">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="Images/LoginPage/Play With OG.png" alt="Satement" class="d-block" style="width:100%">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="Images/LoginPage/Play With OG.png" alt="Analytics" class="d-block" style="width:60%">
+                                </div>
+                            </div>
+                            
+                            <!-- Left and right controls/icons -->
+                            <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" style="background-color: rgb(0, 0, 0); border-radius: 100%;"></span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" style="background-color: rgb(0, 0, 0); border-radius: 100%;"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer -->
+        <footer>
+            <div class="p-2 text-white text-center container-fluid" style="background-color: #463164;">
+                <h3 data-translate-key="Tadoom Payment Portal" class="text-white">Tadoom Payment Portal</h3>
+            </div>
+        </footer>
+        <!-- Javascript for this page and common scripts -->
+        <script src="JavaScript/indexPage.js"></script>
+        <script src="JavaScript/commons.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const toggleButton = document.getElementById("languageToggle");
+                const languageText = document.getElementById("languageText");
+                const elementsToTranslate = {
+                    // Define the text to translate (English => Arabic)
+                    "Bill Summary": " ملخص الفاتورة",
+                    "Signup / Login": "تسجيل الدخول / تسجيل جديد",
+                    "About Us": "نبذة عنا",
+                    "What are the key features of our platform?": "ما هي الميزات الرئيسية لمنصتنا؟",
+                    "Easy Bill Payment": "دفع الفواتير بسهولة",
+                    "Water Consumption": "استهلاك المياه",
+                    "Account Statements": "كشوف الحساب",
+                    "Notifications and Alerts": "الإشعارات والتنبيهات",
+                    "Location Details": "تفاصيل الموقع",
+                    "Support System": "نظام الدعم",
+                    "What does our Platform do?": "ماذا تفعل منصتنا؟",
+                    "Tadoom Payment Portal":"بوابة الدفع تدوم",
+                    "Signup Now":"التسجيل الآن",
+                    "Login Now": "تسجيل الدخول الآن",
+                    "About Tadoom":" نبذة عن شركة تدوم",
+                    "Please enter a valid first name (letters only).":"الرجاء إدخال الاسم الأول صحيحاً (أحرف فقط)",
+                    "Username":"اسم المستخدم",
+                    "Please enter a valid email address.":"الرجاء إدخال عنوان البريد الالكتروني صحيحاً",
+                    "Email":"ايميل",
+                    "Password must be 6-10 characters, with at least one uppercase, one lowercase, one number, and one special character.":"يجب أن تتكون كلمة المرور من 6 إلى 10 أحرف، مع حرف كبير واحد على الأقل وحرف صغير واحد ورقم واحد وحرف خاص واحد",
+                    "Password":"كلمة المرور",
+                    "Please confirm your password.":"الرجاء تأكيد كلمة المرور الخاصة بك",
+                    "Confirm Password":"تأكيد كلمة المرور",
+                    "Already have an account?":"هل لديك حساب بالفعل؟",
+                    "Login Here":"تسجيل الدخول هنا",
+                    "Close":"إغلاق",
+                    "Don't have an account?":"ليس لديك حساب؟",
+                    "Signup Here":"قم بالتسجيل هنا",
+                    "Account Number":"رقم الحساب",
+                    "Search":"بحث",
+                    "By signing up, you agree to our":"بالتسجيل، فإنك توافق على",
+                    "Terms and Conditions":"شروطنا وأحكامنا",
+                    "and":"و",
+                    "Privacy Policy":"سياسة الخصوصية الخاصة بنا",
+                    "Our platform allows users to conveniently pay their water bills online, ensuring a seamless and secure payment experience. With our easy-to-use interface, users can select the amount they wish to pay, ranging from 1 OMR up to their maximum bill amount, using either credit or debit cards.":"تتيح منصتنا للمستخدمين دفع فواتير المياه الخاصة بهم عبر الإنترنت بسهولة، مما يضمن تجربة دفع سلسة وآمنة. من خلال واجهتنا سهلة الاستخدام، يمكن للمستخدمين تحديد المبلغ الذي يرغبون في دفعه، والذي يتراوح من 1 ريال عماني إلى الحد الأقصى لمبلغ الفاتورة، باستخدام بطاقات الائتمان أو الخصم",
+                    "Our platform provides a simple, secure, and efficient way for users to manage their water bills online. You can easily pay bills, track your consumption, view detailed analytics, download your statements, and stay updated with timely notifications. With the ability to pay using credit and debit cards, managing your water utility has never been easier.":"توفر منصتنا طريقة بسيطة وآمنة وفعالة للمستخدمين لإدارة فواتير المياه الخاصة بهم عبر الإنترنت. يمكنك بسهولة دفع الفواتير وتتبع استهلاكك وعرض التحليلات التفصيلية وتنزيل كشف الحسابات الخاصة بك والبقاء على اطلاع دائم بالإشعارات في الوقت المناسب. مع القدرة على الدفع باستخدام بطاقات الائتمان والخصم، اصبحت إدارة مرافق المياه الخاصة بك أسهل من أي وقت مضى.",
+                    "Access our reliable support system to resolve your queries quickly and efficiently. Whether you need help with billing, water consumption insights, or technical assistance, we’re here to assist you every step of the way.":"الوصول إلى نظام الدعم الموثوق به لحل استفساراتك بسرعة وكفاءة. سواء كنت بحاجة إلى مساعدة في الفواتير أو رؤية استهلاك المياه أو المساعدة الفنية، فنحن هنا لمساعدتك في كل خطوة.",
+                    "Access location-based details for better service management and billing accuracy.":"الوصول إلى تفاصيل الموقع الجوغرافي لإدارة الخدمة بشكل أفضل ودقة الفواتير",
+                    "Receive timely notifications about your bill payments, consumption alerts, and any pending actions.":"تلقي إشعارات في الوقت المناسب حول مدفوعات الفواتير وتنبيهات الاستهلاك وأي إجراءات معلقة",
+                    "Easily download past account statements to keep track of your payments and history.":"تنزيل كشف الحسابات السابقة بسهولة لتتبع مدفوعاتك وسجلك",
+                    "View detailed analytics of your water consumption to help track usage trends and optimize your bills.":"عرض تحليلات مفصلة لاستهلاكك للمياه للمساعدة في تتبع اتجاهات الاستخدام وتحسين فواتيرك",
+                    "Select the desired bill amount between 1 OMR and your maximum bill, and securely pay via credit or debit card.":"حدد مبلغ الفاتورة المطلوب بين 1 ريال عماني والحد الأقصى لفاتورتك، وادفع بأمان عبر بطاقة الائتمان أو الخصم",
+                    "Tadoom is Oman's premier IoT and Smart City transformation company, delivering state-of-the-art smart technology, automation, and innovative IoT solutions. Empower your business with Tadoom's cutting-edge services designed for optimal efficiency and growth. Our company is a pioneer in IoT integration, leveraging a service-oriented operational framework. At the core of our approach is value generation, ensuring that new technologies are supporting our clients’ growth and citizen experience. Additionally, we are an IOT licensed service provider and contribute to align Oman to international sustainability standards in the field of smart buildings.":"تدوم هي الشركة الرائدة في مجال إنترنت الأشياء والتحول إلى المدن الذكية في سلطنة عمان، حيث تقدم أحدث التقنيات الذكية والاجهزة التلقائية وحلول إنترنت الأشياء المبتكرة. لا تترد في تمكين عملك من خلال خدمات تدوم المتطورة، المصممة خصيصاً لتحقيق الكفاءة والنمو الأمثل. شركتنا رائدة في تكامل إنترنت الأشياء حيث يتمثل جوهر نهجنا في تقديم خدمة ذات كفاءة عالية، وضمان دعم التقنيات الجديدة لنمو عملائنا وتجربة المواطن. بالإضافة إلى ذلك، نحن نزود خدمة مرخصة لإنترنت الأشياء ونساهم في مواكبة سلطنة عمان مع معايير الاستدامة الدولية في مجال المباني الذكية. ",
+                    "Password must be 6-10 characters, with at least one uppercase, one lowercase, one number, and one special character":"معلومات عنا",
+                };
+
+                let currentLanguage = "EN"; // Default language
+
+                toggleButton.addEventListener("click", () => {
+                    currentLanguage = currentLanguage === "EN" ? "AR" : "EN";
+                    localStorage.setItem("language", currentLanguage);
+                    languageText.textContent = currentLanguage === "EN" ? "AR" : "EN";
+
+                    // Toggle RTL layout
+                    if (currentLanguage === "AR") 
+                    {
+                        document.querySelectorAll("p").forEach((p) => {
+                            p.setAttribute("dir", "rtl");
+                            p.style.textAlign = "right";
+                        });
+                        document.querySelectorAll("li").forEach((li) => {
+                            li.setAttribute("dir", "rtl");
+                            li.style.textAlign = "right";
+                        });
+                        document.querySelectorAll("h2").forEach((h2) => {
+                            h2.setAttribute("dir", "rtl");
+                            h2.style.textAlign = "right";
+                        });
+                        const paragraph = document.getElementById("about"); // For about us paragraph alignment
+                        paragraph.setAttribute("dir", "rtl");
+                        paragraph.style.textAlign = "right";
+
+                        const aboutheading = document.getElementById("abouthead"); // For about us heading alignment
+                        aboutheading.setAttribute("dir", "rtl");
+                        aboutheading.style.textAlign = "right";
+                    } 
+                    else
+                    {
+                        
+                        document.querySelectorAll("p").forEach((p) => {
+                            p.setAttribute("dir", "ltr");
+                            p.style.textAlign = "left";
+                        });
+                        document.querySelectorAll("li").forEach((li) => {
+                            li.setAttribute("dir", "ltr");
+                            li.style.textAlign = "left";
+                        });
+                        document.querySelectorAll("h2").forEach((h2) => {
+                            h2.setAttribute("dir", "ltr");
+                            h2.style.textAlign = "left";
+                        });
+
+                        const paragraph = document.getElementById("about");
+                        paragraph.setAttribute("dir", "ltr");
+                        paragraph.style.textAlign = "left"; // Revert text alignment for LTR
+
+                        const aboutheading = document.getElementById("abouthead");
+                        aboutheading.setAttribute("dir", "ltr");
+                        aboutheading.style.textAlign = "left";
+                    }
+
+                    // Translate content
+                    document.querySelectorAll("[data-translate-key]").forEach((element) => {
+                        const key = element.getAttribute("data-translate-key");
+                        if (elementsToTranslate[key]) 
+                        {
+                            if(element.placeholder !== undefined)
+                            {
+                                element.placeholder = currentLanguage === "EN" ? key : elementsToTranslate[key];
+
+                            }   
+                            else
+                            {
+                                const translatedText = currentLanguage === "EN" ? key : elementsToTranslate[key];
+                                const iconHtml = element.innerHTML.replace(element.textContent.trim(),""); // Extract icons and extra spaces
+                                element.innerHTML = translatedText + iconHtml; // Reassemble with translated text
+                            }
+
+                        }
+                    });
+                });
+            });
+
+        </script>
+    </body>
+</html>
